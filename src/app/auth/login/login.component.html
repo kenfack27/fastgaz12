@@ -1,0 +1,59 @@
+<main>
+    <div class="container">
+        <div class="px-2">
+            <div class="row d-flex justify-content-center">
+                <div class="col login-block" [formGroup]="loginForm">
+                    <h1 class="text-center">Fast Gaz</h1>
+                    <h2 class="text-center">Login</h2>
+                    <div class="mb-2 pt-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput formControlName="email" />
+                            <mat-error>Email cannot be empty</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput formControlName="password" />
+                            <mat-error>Password cannot be empty</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <button *ngIf="!(isLoading$ | async)" [disabled]="!loginForm.valid" mat-flat-button
+                            color="accent" (click)="onLogin()">Log In</button>
+                        <!-- *ngIf="isLoading$ | async" -->
+                        <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Login...
+                        </button>
+                    </div>
+                    <div class="mb-2 d-flex justify-content-center">
+                        <p>No account ?</p>
+                        <a routerLink="/register" class="link">Register Here</a>
+                    </div>
+                    <div class="mb-2 d-flex justify-content-center">
+                        <p>Forget password ?</p>
+                        <a routerLink="/forgot-password" class="link">Change here</a>
+                    </div>
+                    <div class="mb-2 d-flex justify-content-center">
+                        <p>Just shop here</p>
+                        <a routerLink="/welcom" class="link fw-bold">Shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="d-flex justify-content-center">
+                    <p class="text-center">&copy; 2024 BIS SARL</p>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="d-flex justify-content-center follow">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

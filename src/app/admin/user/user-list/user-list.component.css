@@ -1,0 +1,41 @@
+.badge {
+    height: 20px;
+}
+
+.detail {
+    bottom: 5px;
+}
+
+.product-image {
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+}
+
+mat-nav-list a {
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 5px #333;
+    border-radius: 15px;
+}
+
+mat-nav-list a:hover {
+    box-shadow: none;
+}
+
+mat-form-field{
+    width: 500px;
+}
+
+
+
+@media screen and (max-width: 575px) {
+   
+    mat-nav-list{
+        width: 100%;
+    }
+
+    mat-form-field{
+        width: 100%;
+    }
+}

@@ -1,0 +1,43 @@
+<div class="container">
+    <h2><button (click)="onGoBack()" mat-icon-button><mat-icon>arrow_back</mat-icon></button></h2>
+    <div class="px-2">
+
+        <div class="row d-flex justify-content-center card">
+            <h1 class="text-center">Store profil-Update</h1>
+            <div class="col-md-12 form-add-store" [formGroup]="storeForm">
+                <div class="mb-2">
+                    <label for="exampleFormControlInput1" class="form-label">Store Name</label>
+                    <input type="text" class="form-control" placeholder="Store Name" formControlName="name" [value]="store.name">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Phone number</label>
+                    <input type="text" class="form-control" placeholder="+237 00 00 00 00" formControlName="phoneNumber" [value]="store.phoneNumber" >
+                </div>
+
+                <!-- <div class="mb-2">
+                    <label for="exampleFormControlInput1" class="form-label">Store Email</label>
+                    <input type="email" class="form-control" placeholder="store@example.com" formControlName="email" [value]="store.email" disabled >
+                </div> -->
+                <div class="mb-2">
+                    <label for="exampleFormControlInput1" class="form-label">Store Address</label>
+                    <input type="text" class="form-control" placeholder="Simbock, 3 Lampadaire" formControlName="address" [value]="store.address" >
+                </div>
+
+                <div class="mb-2">
+                    <mat-slide-toggle *ngIf="!store.approaveOrder" (change)="onApproveChange($event)" >Automatique Valid Customer orders ?</mat-slide-toggle>
+                    <mat-slide-toggle *ngIf="store.approaveOrder" (change)="onApproveChange($event)" [checked]="store.approaveOrder"  ><span class="text-success fw-bold">Automatique Actived</span></mat-slide-toggle>
+                    <!-- <mat-slide-toggle  formControlName="approveOrder"  >Automatique Valid Customer orders ?</mat-slide-toggle> -->
+                </div>
+
+                <div class="mb-2 d-flex justify-content-between">
+                    <button mat-flat-button  color="accent" (click)="onSaveCreate()"
+                        *ngIf="!(isLoading$ | async)">Save</button>
+                    <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

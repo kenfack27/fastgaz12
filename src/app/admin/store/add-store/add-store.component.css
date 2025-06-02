@@ -1,0 +1,35 @@
+mat-form-field {
+    width: 500px
+}
+
+button{
+    border-radius: 15px;
+}
+
+h1 {
+    font-weight: 900;
+    color: #ff4081;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* .form-add-store{
+    background: #eee;
+    box-shadow: 3px 3px 3px #333;
+    padding: 10px;
+    border-radius: 15px;
+} */
+
+@media screen and (max-width: 575px) {
+    mat-form-field {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .login-block {
+        margin-top: 50%;
+    }
+}

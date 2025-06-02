@@ -1,0 +1,42 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #202124;
+  color: #fff;
+}
+
+.spacer{
+  flex: 1 1;
+}
+a{
+  color: #333;
+}
+
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+
+
+@media screen and (max-width: 575px) {
+ 
+
+}

@@ -1,0 +1,59 @@
+<div class="container my-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center mb-3">
+        <button mat-icon-button (click)="onGoBack()" class="me-2">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h5 class="mb-0">Transaction History</h5>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="appState === DataState.LOADING_STATE" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="appState === DataState.ERROR_STATE" class="alert alert-danger text-center">
+        <mat-icon class="me-1">error</mat-icon> Could not load transactions. Try again later.
+    </div>
+
+    <!-- Loaded State -->
+    <div *ngIf="appState === DataState.LOADED_STATE">
+        <div *ngIf="transactionHistories.length > 0" class="row gy-3">
+            <div *ngFor="let tx of transactionHistories" class="col-12">
+                <mat-card class="shadow-sm rounded transaction-card">
+                    <mat-card-header>
+                        <mat-card-title class="text-primary">
+                            {{ tx.amount | customCurrency }}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            {{ tx.date | date: 'mediumDate' }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <p class="mb-1"><strong>Description:</strong> {{ tx.description }}</p>
+                        <p class="mb-1"><strong>User:</strong> {{ tx.createdBy }}</p>
+                        <p class="mb-1"><strong>Status:</strong>
+                            <span class="badge" [ngClass]="{
+                  'bg-success': tx.paymentStatus === paymentStatus.PAID,
+                  'bg-warning': tx.paymentStatus === paymentStatus.PENDING,
+                  'bg-danger': tx.paymentStatus === paymentStatus.FAILED
+                }">
+                                {{ tx.paymentStatus }}
+                            </span>
+                        </p>
+                        <p class="mb-0"><strong>Type:</strong> {{ tx.transactionHistoryType }}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="transactionHistories.length === 0" class="alert alert-info text-center mt-4">
+            <mat-icon class="me-1">info</mat-icon> No transactions available.
+        </div>
+    </div>
+</div>

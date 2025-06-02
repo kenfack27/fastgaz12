@@ -1,0 +1,79 @@
+<!-- footer-nav.component.html -->
+<nav class="navbar fixed-bottom bg-white mat-elevation-z4 py-2">
+    <div class="container">
+        <div class="row w-100">
+            <div class="col-12">
+                <div class="d-flex justify-content-evenly">
+                    <button mat-button class="btn-footer d-flex flex-column align-items-center" (click)="onGoHome()"
+                        [class.active-route]="currentRoute === '/home'">
+                        <mat-icon>home</mat-icon>
+                        <span class="nav-label">Home</span>
+                    </button>
+
+                    <button mat-button class="btn-footer d-flex flex-column align-items-center" (click)="onCheckout()"
+                        [class.active-route]="currentRoute === '/checkout'">
+                        <div class="icon-container">
+                            <mat-icon>shopping_cart</mat-icon>
+                            <span *ngIf="cartItemCount > 0" class="badge-container">
+                                <span class="item-badge">{{cartItemCount}}</span>
+                            </span>
+                        </div>
+                        <span class="nav-label">Cart</span>
+                    </button>
+
+                    <button mat-button class="btn-footer d-flex flex-column align-items-center" (click)="onOpenHelp()"
+                        [class.active-route]="currentRoute === '/help'">
+                        <mat-icon>help</mat-icon>
+                        <span class="nav-label">Help</span>
+                    </button>
+
+                    <button mat-button class="btn-footer d-flex flex-column align-items-center"
+                        routerLink="/service/find-store"
+                        [class.active-route]="currentRoute.includes('/service/find-store')">
+                        <mat-icon>location_on</mat-icon>
+                        <span class="nav-label">Find Store</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- 
+<nav class="navbar fixed-bottom  menu-footer pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-center footer">
+                    <ul class="d-flex justify-content-between">
+                      
+                        <li>
+                            <button mat-icon-button (click)="onGoHome()" >
+                                <mat-icon>home</mat-icon>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button mat-icon-button (click)="onCheckout()" >
+                                <mat-icon>shopping_cart</mat-icon>
+                            </button>
+                        </li>
+
+
+                        <li>
+                            <button mat-icon-button matTooltip="help">
+                                <mat-icon>help</mat-icon>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" mat-icon-button matTooltip="Find store here"
+                                routerLink="/service/find-store">
+                                <mat-icon>assistant_navigation</mat-icon>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav> -->

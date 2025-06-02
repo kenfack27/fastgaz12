@@ -1,0 +1,31 @@
+.cards {
+    box-shadow: 3px 3px 3px #333;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    padding: 8px 8px 8px 8px;
+    width: 500px;
+}
+
+table {
+    background: #ffffff;
+}
+
+table th {
+    padding: 8px;
+    border: none;
+    color: #50575e;
+}
+
+table td {
+    padding: 8px;
+    border: none
+}
+
+.custorm-button {
+    border-radius: 15px;
+}
+
+#map {
+    height: 180px;
+}

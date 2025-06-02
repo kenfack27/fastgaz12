@@ -1,0 +1,42 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    background-color: #f2f2f2;
+}
+
+thead th {
+    padding: 4px;
+    border: 1px solid #ddd;
+}
+
+tbody td {
+    padding: 4px;
+    border: 1px solid #ddd;
+}
+
+tfoot {
+    background-color: #f2f2f2;
+}
+
+tfoot td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+
+h2 {
+    font-weight: 500;
+    color: #ff4081;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 575px) {
+   table {
+        width: 100%;
+    }
+
+}

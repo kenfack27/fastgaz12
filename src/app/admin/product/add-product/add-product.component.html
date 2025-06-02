@@ -1,0 +1,64 @@
+<div class="container">
+    <h2><button (click)="onGoBack()" mat-icon-button><mat-icon>arrow_back</mat-icon></button></h2>
+    <div class="px-4">
+
+        <div class="row d-flex justify-content-center ">
+            <h1 class="text-center">Create New Product</h1>
+            <div class="col-md-12" [formGroup]="productForm">
+                <!-- <div class="mb-2">
+                    <mat-form-field >
+                        <mat-label>Product Name</mat-label>
+                        <input type="text" matInput formControlName="name" />
+                        <mat-error>Name cannot be empty</mat-error>
+                        <mat-hint>Tradex, Total</mat-hint>
+                    </mat-form-field>
+                </div> -->
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Product Name</mat-label>
+                        <mat-select  formControlName="name"  (selectionChange)="onChosseProduct($event)">
+                            <mat-option *ngFor="let product of storeProductList"  [value]="product"  >{{product.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field  >
+                        <mat-label>Buy Price</mat-label>
+                        <input type="number" matInput formControlName="buyPrice" />
+                        <mat-error>Buy Price cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field  >
+                        <mat-label>Sale Price</mat-label>
+                        <input type="number" matInput formControlName="price">
+                        <mat-error>Price cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field  >
+                        <mat-label>Packaging Price</mat-label>
+                        <input type="number" matInput formControlName="priceWithPackaging">
+                        <mat-error>Phone number must have 9 number</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field  >
+                        <mat-label>Alert Threshold</mat-label>
+                        <input type="number" matInput formControlName="alertThreshold">
+                        <mat-error>Alert Threshold cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-2 d-flex justify-content-between">
+                    <button mat-flat-button [disabled]="!productForm.valid" color="accent" *ngIf="!(isLoading$ | async)"
+                        (click)="onSaveProduct()"  >Save</button>
+                    <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

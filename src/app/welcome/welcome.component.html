@@ -1,0 +1,383 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">FAST GAZ</a>
+        <div class="space"></div>
+        <button mat-flat-button color="accent" (click)="goToLoginPage()">Login</button>
+    </div>
+</nav>
+<div class="spinner-container" *ngIf="(isLoading$ | async) as spinner">
+    <div class="col-md-12 d-flex justify-content-center" *ngIf="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="container page mt-4">
+    <div class="px-2">
+        <div class="row">
+            <div class="col-md-12  ">
+                <div class="d-flex justify-content-between">
+                    <div class="badgeAndClearButton">
+                        <button mat-icon-button (click)="onCheckout()"><mat-icon [matBadge]="items"
+                                matBadgeColor="warn">shopping_cart</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        
+        <!-- Carousel -->
+        <div class="row mb-2">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-8">
+                    <div id="carouselExampleIndicators" class="carousel slide custorm-carousel" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/assets/fast-gaz-logo.jpeg" class=" w-100 img-fluid logo-2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon text-warning" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End carousel -->
+
+
+        <!-- TEST DISTANCE -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container mx-auto p-4">
+                    <h2 class="text-2xl font-bold mb-4">Find Nearest Store</h2>
+
+                    <div class="mb-4">
+                        <button mat-raised-button (click)="getCurrentLocationAndFindStores()" class="">
+                            Use My Current Location
+                        </button>
+
+                        <!-- <button mat-raised-button (click)="clearCache()">
+                            Clear Cache
+                        </button> -->
+                    </div>
+
+                    <!-- Display user location if available -->
+                    <div *ngIf="userLocation" class="mb-4 p-3 bg-gray-100 rounded">
+                        <h3 class="font-semibold">Your Current Location:</h3>
+                        <p>Latitude: {{ userLocation.lat.toFixed(6) }}</p>
+                        <p>Longitude: {{ userLocation.lng.toFixed(6) }}</p>
+                    </div>
+
+                    <div *ngIf="loadingDistance" class="text-gray-600 mb-4">
+                        <button class="btn btn-primary" type="button" disabled>
+                            <!-- <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> -->
+                            <span role="status">Getting your location and calculating distances...</span>
+                        </button>
+                    </div>
+
+                    <div *ngIf="error" class="text-red-500 mb-4 p-2 bg-red-100 rounded">
+
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg width="24" height="24" class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                                Error: {{ error }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="nearestStore" class="mb-4 border p-4 rounded shadow mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Nearest Store</h3>
+                        <div class="space-y-2">
+                            <p><strong>Store:</strong> <span class="store-name">{{ nearestStore.store.name }}</span></p>
+                            <p><strong>Distance:</strong> {{ nearestStore.distance.toFixed(2) }} km</p>
+                            <p *ngIf="nearestStore.duration"><strong>Estimated Travel Time:</strong>
+                                {{ formatDuration(nearestStore.duration) }}</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="allStores.length > 0" class="border p-4 rounded shadow">
+                        <h3 class="text-xl font-semibold mb-2">All Stores (Sorted by Distance)</h3>
+                        <div class="table-responsive">
+                            <table class="w-full">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left p-2">Store</th>
+                                        <th class="text-right p-2">Distance</th>
+                                        <th class="text-right p-2">Travel Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr [class.text-success]="store.distance === 0" *ngFor="let store of allStores"
+                                        [class.bg-blue-100]="store.store.id === nearestStore?.store.id">
+                                        <td class="p-2 fw-bold"><span class="fw-bold text-capitalize">{{
+                                                store.store.name }}</span></td>
+                                        <td class="text-right p-2">{{ store.distance.toFixed(2) }} km</td>
+                                        <td class="text-right p-2">{{ formatDuration(store.duration) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TEST DISTANCE -->
+
+        <!-- Information -->
+        <div class="row mb-1">
+            <div class="col-md-6">
+                <h1 class="">Fast gaz is for everyone</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="align-items-center">
+                    <div class="card-body infos-1 p-2">
+                        <p>
+                            Quickly buy your gaz on our store.
+                            You're in Yaounde selct your Gaz. Purchase
+                            you gaz according to preference.
+                            You will receive a confirmation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- service start -->
+        <div class="row ">
+            <h1>Buy in your store </h1>
+            <p>In case you need to buy more product do it here</p>
+            <!-- LODING STATE -->
+            <div class="row" *ngIf="appState2 === DataState2.LOADING_STATE ">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="appState2 === DataState2.LOADED_STATE">
+                <div class="col-6 mb-2" *ngFor="let store of storeList">
+                    <mat-card class="example-card product" (click)="onGoToStore(store.id)">
+                        <mat-card-header>
+
+                            <div class="position-absolute top-0 end-0 m-2" *ngIf="store?.certified">
+                                <div
+                                    class="badge-circle bg-primary d-flex align-items-center justify-content-center">
+                                    <mat-icon class="text-white">verified</mat-icon>
+                                </div>
+                            </div>
+                            <mat-card-title class="d-flex align-items-center">
+                                <span class="ms-2 badge bg-primary" *ngIf="store?.certified">CERTIFIED</span>
+                            </mat-card-title>
+
+                            <mat-card-title class="d-flex align-items-center">
+                                {{ store?.name | uppercase}}
+
+                            </mat-card-title>
+
+                        </mat-card-header>
+                        <mat-card-content  class="image-container">
+                            <div class="position-relative">
+                                <img mat-card-image src="{{store?.image}}" alt="{{store.name}}" class="img-fluid">
+                            </div>
+                        </mat-card-content>
+                        <mat-card-actions class="">
+                            <button mat-icon-button color="accent"><mat-icon>location_on</mat-icon></button>
+                            <span class="location">{{ store.address}}</span>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div><!-- End service -->
+        <hr>
+        <div class="row mb-2 d-flex justify-content-center">
+            <h3>You don't know any location </h3>
+            <p>You can only buy one produc here</p>
+            <!-- LODING STATE -->
+            <div class="row" *ngIf="appState === DataState.LOADING_STATE ">
+                <div class="col-6 mb-2">
+                    <div class="card" aria-hidden="true">
+                        <img src="" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-danger disabled placeholder col-12"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-2">
+                    <div class="card" aria-hidden="true">
+                        <img src="" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-danger disabled placeholder col-12"></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="card" aria-hidden="true">
+                        <img src="" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-danger disabled placeholder col-12"></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="card" aria-hidden="true">
+                        <img src="" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </h5>
+                            <p class="card-text placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                            </p>
+                            <a href="#" tabindex="-1" class="btn btn-danger disabled placeholder col-12"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- LOADIND END -->
+
+            <!-- LOADED STATE -->
+            <div class="row" *ngIf="appState === DataState.LOADED_STATE">
+
+                <div class="col-6 mb-4" *ngFor="let product of storeProductList">
+                    <div class="card customer-card">
+                        <img src="assets/{{product?.image}}" class="card-img-top" alt="{{product.name}}">
+                        <div class="card-body">
+                            <h5 class="card-title ">
+                                {{product.name}}</h5>
+
+                            <h5 class="card-title text-muted fw-bold f-2">
+                                {{product.price | localCurrency}}</h5>
+
+                            <button *ngIf="!(isLoading$ | async)" class=" col-12" (click)="onAddToCart(product)"
+                                mat-flat-button color="accent">Buy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ERROR -->
+            <div *ngIf="appState === DataState.ERROR_STATE" class="alert alert-danger d-flex align-items-center"
+                role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill" />
+                </svg>
+                <div>
+                    <p> An error occured. Please reload the page</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+            <h3>What you can do</h3>
+            <div class="col-6">
+                <div class="card mb-3">
+
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <i class="bi bi-crosshair2"></i>
+                    </div>
+                </div>
+                <h4 class="small text-center mb-4">Localize</h4>
+            </div>
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <i class="bi bi-bag "></i>
+                    </div>
+                </div>
+                <h4 class="small text-center mb-4">Buy</h4>
+            </div>
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <i class="bi bi-upc-scan"></i>
+                    </div>
+                </div>
+                <h4 class="small text-center mb-4">Scan</h4>
+            </div>
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                </div>
+                <h4 class="small text-center mb-4">Delivery</h4>
+            </div>
+        </div> <!-- end details -->
+        <!-- feed back -->
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <h3>Why should you choose us ?</h3>
+                <div class="col chooseUs">
+                    <ol>
+                        <li>Quickly Delivery</li>
+                        <li>Can cancel you order.</li>
+                        <li>Stay home and receive your gaz.</li>
+                        <li>Ease to use our Application</li>
+
+                    </ol>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>What our custorm say</h3>
+            </div>
+
+        </div>
+    </div>
+    <div class="row ">
+        <app-footer></app-footer>
+    </div>
+
+</div>
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>

@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Confirm your information</h1>
+<mat-dialog-content [formGroup]="registerForm">
+    <div class="mb-1">
+        <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+            <mat-hint align="start"><strong>Provide a valid email please</strong></mat-hint>
+            <mat-error>Email cannot be empty</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="mb-1">
+        <mat-form-field >
+            <mat-label>Phone</mat-label>
+            <input type="tel" matInput formControlName="phone">
+            <mat-error>Phone number cannot be empty</mat-error>
+            <mat-hint align="start"><strong>Provide a valid Phone please</strong></mat-hint>
+        </mat-form-field>
+    </div>
+    
+    <div class="mb-1">
+        <mat-form-field >
+            <mat-label>Address</mat-label>
+            <input type="text" matInput formControlName="address">
+            <mat-hint>Simbock, grande chefferie</mat-hint>
+            <mat-error>Your address cannot be empty</mat-error>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button *ngIf="!(isLoading$ | async)" [disabled]="!registerForm.valid" mat-flat-button color="accent"
+        (click)="onSaveBasicUser()">Save</button>
+    <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        saving...
+    </button>
+    <!-- <button mat-button (click)="onSaveBasicUser()" cdkFocusInitial>Create</button> -->
+</mat-dialog-actions>

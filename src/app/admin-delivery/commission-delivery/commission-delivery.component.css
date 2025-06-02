@@ -1,0 +1,29 @@
+mat-list-item {
+    /* box-shadow: 3px 3px 3px #333; */
+    border: 2px solid #eee;
+    border-radius: 15px;
+    margin-bottom: 4px;
+    background: #fff;
+
+}
+
+mat-list {
+
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.card h5 {
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5em 0.75em;
+}
+
+h1 {
+    font-weight: 600;
+    color: #ec437c;
+}

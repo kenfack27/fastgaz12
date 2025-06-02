@@ -1,0 +1,17 @@
+.footer {
+	background: #131111;
+	color: white;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+ul li {
+	display: inline-block;
+	margin: 10px;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}

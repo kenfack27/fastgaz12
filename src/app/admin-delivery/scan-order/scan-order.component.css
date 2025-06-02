@@ -1,0 +1,20 @@
+.card{
+    box-shadow: 3px 3px 3px #333;
+    border: 1px solid #ccc;
+}
+.button-start-scan{
+    width: 100%;
+}
+.alert-success{
+    background-color: rgb(4, 174, 4);
+    color: #fff;
+    border: 1px solid rgb(4, 174, 4);
+}
+
+h1{
+    font-weight: 900;
+}
+h2 {
+    font-weight: 700;
+    color: #ec437c;
+}

@@ -1,0 +1,49 @@
+.container{
+  font-size: 14px !important;
+  
+}
+
+h1,h3 {
+  font-weight: 600;
+  color: #ff4081;
+}
+
+h1 {
+  font-size: 16px;
+}
+
+h2{
+  font-weight: 900;
+}
+
+.button-dowload-invoice {
+  box-shadow: 3px 3px 3px #333;
+
+}
+
+
+@media screen and (max-width: 540px) {
+  .para {
+    font-size: 0.5cm;
+
+  }
+}
+
+.para {
+  color: pink;
+  font-weight: bold;
+  font-size: 0.6cm;
+}
+
+/* Dans votre fichier de styles global ou component-specific */
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  /* Personnaliser la mise en page d'impression */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="container">
+    <h2><button (click)="onGoBack()" mat-icon-button><mat-icon>arrow_back</mat-icon></button></h2>
+    <div class="px-4">
+
+        <div class="row d-flex justify-content-center ">
+            <h1 class="text-center">Become delivery</h1>
+            <div class="col-md-12"  [formGroup]="deliveryForm">
+                <div class="mb-2" >
+                    <mat-form-field>
+                        <mat-label>Select Store</mat-label>
+                        <mat-select formControlName="storeName">
+                            <mat-option  *ngFor="let store of storeList" [value]="store.id">{{store.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <p><a class="nav-link text-info" href="assets/delivery_terms_and_condition.pdf" target="_blank" rel="noopener noreferrer">Read Terms</a> </p>
+                </div>
+                <div class="mb-2">
+                    <p><mat-checkbox formControlName="agree">Agree to terms and conditions</mat-checkbox></p>
+                </div>
+
+
+                <div class="mb-2 d-flex justify-content-between">
+                    <button mat-flat-button [disabled]="!deliveryForm.valid" color="accent"
+                        *ngIf="!(isLoading$ | async)" (click)="onSave()">Save</button>
+
+                    <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

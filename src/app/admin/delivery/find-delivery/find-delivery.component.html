@@ -1,0 +1,28 @@
+<div class="container">
+
+    <div class="px-2">
+        <div class="row">
+            <h1> <button mat-icon-button matTooltip="Back" (click)="onGoBack()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button> Delivery</h1>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 d-flex justify-content-between">
+                <button routerLink="/admin/add-delivery" class="box-shadow"
+                    mat-icon-button><mat-icon>add</mat-icon></button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <google-map [center]="center" [zoom]="zoom" (mapMousemove)="move($event)" height="600px" width="" id="map">
+            <map-marker #marker="mapMarker" *ngFor="let position of listMarkerPositions" [position]="position"
+                [options]="markerOptions" (mapClick)="openInfoWindow(marker)" (mapClick)="onGoToDelivery($event)" />
+            <map-info-window>Details</map-info-window>
+        </google-map>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="px-2">
+    <div class="row mb-2 mt-2">
+      <div class="col d-flex justify-content-between">
+        <h1>
+          Home
+        </h1>
+        <h3>Hello, {{ username}}</h3>
+        <!-- <button (click)="onGoBack()" mat-icon-button> <mat-icon>arrow_back</mat-icon></button>Home -->
+      </div>
+    </div>
+    <!-- Annalytic  SALE-->
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h3>Sale</h3>
+              <span class="amount text-center text-success">{{totalsale | customCurrency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--END Insigh  SALE -->
+
+    <!-- Insight purchase -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <mat-icon>shopping_cart</mat-icon>
+              <div><span class="amount text-center">{{purchaseAmount | customCurrency }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end purchase-->
+
+    <div class="row mb-2">
+      <!-- <div class="col-md-6 mb-2">
+                <h2>Seller Per Month</h2>
+                <div class="card-insight d-flex justify-content-center">
+                    <canvas id="acquisitions"></canvas>
+                </div>
+            </div> -->
+      <div class="col-md-6">
+        <h2>Product Stock</h2>
+        <div class="card-insight d-flex justify-content-center">
+          <canvas id="mostSeller"></canvas>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <!-- Sales Per Month Chart -->
+      <div class="col-12 col-lg-6 mb-3">
+        <mat-card class="chart-card mat-elevation-z2">
+          <mat-card-header>
+            <mat-card-title>Sales Per Month</mat-card-title>
+            <mat-card-subtitle>Monthly revenue analysis</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas id="acquisitions"></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Most Seller Product Chart -->
+      <div class="col-12 col-lg-6 mb-3">
+        <mat-card class="chart-card mat-elevation-z2">
+          <mat-card-header>
+            <mat-card-title>Most Seller Product</mat-card-title>
+            <mat-card-subtitle>Top performing products</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <!-- <canvas id="mostSeller"></canvas> -->
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

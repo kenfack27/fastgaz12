@@ -1,0 +1,76 @@
+<!-- Component Template -->
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="header-content">
+        <button mat-icon-button class="back-button" (click)="onGoBack()">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <div class="header-text">
+          <h1 class="title">Dashboard</h1>
+          <p class="welcome-text">Welcome back, {{username}}</p>
+        </div>
+        <button mat-raised-button class="store-button"  (click)="onGoToMyStore()">
+          <mat-icon>store</mat-icon>
+          Switch Store
+        </button>
+      </div>
+    </div>
+  
+    <!-- Alert Messages -->
+    <div class="alerts-container">
+      <div *ngIf="errorState" class="alert-message error">
+        <mat-icon>error_outline</mat-icon>
+        <div class="alert-content">
+          <h3>Store Ownership Required</h3>
+          <p>You need to create a store to access these features</p>
+        </div>
+        <button mat-raised-button color="warn" routerLink="/admin/add-store">
+          Create Store
+        </button>
+      </div>
+  
+      <div *ngIf="!(isAdelivery$ | async) as delivery" class="alert-message warning">
+        <mat-icon>local_shipping</mat-icon>
+        <div class="alert-content">
+          <h3>Delivery Profile Missing</h3>
+          <p>Set up your delivery profile to start accepting orders</p>
+        </div>
+        <button mat-raised-button color="accent" routerLink="/delivery/becomme-delivery">
+          Setup Delivery
+        </button>
+      </div>
+    </div>
+  
+    <!-- Dashboard Cards -->
+    <div class="dashboard-content">
+      <h2 class="section-title">
+        <mat-icon>dashboard</mat-icon>
+        Quick Actions
+      </h2>
+  
+      <div class="card-grid">
+        <!-- Store Card -->
+        <mat-card class="feature-card" routerLink="/store">
+          <div class="card-icon store">
+            <mat-icon>storefront</mat-icon>
+          </div>
+          <mat-card-content>
+            <h3>My Store</h3>
+            <p>Manage products, orders and settings</p>
+          </mat-card-content>
+        </mat-card>
+  
+        <!-- Delivery Card -->
+        <mat-card class="feature-card" (click)="onGoToDelivery()">
+          <div class="card-icon delivery">
+            <mat-icon>local_shipping</mat-icon>
+          </div>
+          <mat-card-content>
+            <h3>Delivery</h3>
+            <p>View and manage deliveries</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

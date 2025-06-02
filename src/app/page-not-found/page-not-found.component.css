@@ -1,0 +1,13 @@
+.card {
+    margin-top: 50%;
+}
+
+ul li {
+    display: inline-flex;
+    margin: 4px;
+}
+
+h2{
+    font-weight: 700;
+    color: red;
+}

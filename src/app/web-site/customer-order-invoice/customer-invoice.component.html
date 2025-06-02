@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="px-2 mt-4">
+        <div class="row">
+            <div class="col md-12">
+                <div class="d-flex justify-content-between">
+                    <h2><button (click)="onGoBack()" mat-icon-button><mat-icon>arrow_back</mat-icon></button>Invoice
+                    </h2>
+                    <div class="no-print mb-2">
+                        <button class="button-dowload-invoice" mat-icon-button
+                            (click)="exportToPDF()"><mat-icon>upload_file</mat-icon></button>
+                    </div>
+                </div>
+
+                <div class="container mt-4 " id="content-to-export-in-pdf">
+                    <div class="row mb-4">
+                        <h1 class="text-center">Thank for your purchase</h1>
+                    </div>
+
+                    <!-- LODING STATE -->
+                    <div *ngIf="appState === DataState.LOADING_STATE ">
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <ul class="list-unstyled" aria-hidden="true">
+                                    <li class="placeholder col-6"></li>
+                                    <li class="placeholder col-6"></li>
+                                    <li class="placeholder col-6"></li>
+                                    <li class="placeholder col-6"></li>
+                                    <li class="placeholder col-6"></li>
+                                </ul>
+                            </div>
+                            <div class="col-4">
+                                <img src="" class="img-fluid placeholder col-4" alt="" height="200">
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="row d-flex justify-content-between" aria-hidden="true">
+                            <div class=" d-flex justify-content-between">
+                                <div class=" placeholder col-4">
+                                    <p></p>
+                                </div>
+                                <div class="col-xl-2">
+                                    <p class=" placeholder col-6 float-end"></p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="row text-black">
+
+                            <div class="col-xl-12">
+                                <h3 class="float-end  placeholder col-6"></h3>
+                            </div>
+                            <hr style="border: 2px solid black;">
+                        </div>
+                    </div>
+                    <!-- LOADED STATE -->
+                    <div *ngIf="appState === DataState.LOADED_STATE">
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <ul class="list-unstyled">
+                                    <li class="text-black">Store: {{ customerOrderItem.store.name | uppercase }}</li>
+                                    <li class="text-black">Phone: {{ customerOrderItem.customerOrder.customer.phone|
+                                        lowercase }}
+                                    </li>
+                                    <li class="text-muted mt-1"><span class="text-black">Invoice</span> #{{
+                                        customerOrderItem.customerOrder.invoiceNumber}}</li>
+                                    <li class="text-black mt-1">Date: {{ customerOrderItem.createdAt | date }}</li>
+                                    <li class="text-black mt-1">Location: {{
+                                        customerOrderItem.customerOrder.customer.address | lowercase }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-4">
+                                <img src="{{qrcodeImgeUrl}}" class="img-fluid" alt="" height="200">
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="row d-flex justify-content-between "
+                            *ngFor="let customerOrder of customerOrderItemList">
+                            <div class=" d-flex justify-content-between">
+                                <div class="col-xl-10 ">
+                                    <p>{{ customerOrder.product.name}}</p>
+                                </div>
+                                <div class="col-xl-2">
+                                    <p class="float-end">{{ customerOrder.price | customCurrency}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="row text-black">
+
+                            <div class="col-xl-12">
+                                <h3 class="float-end fw-bold">Total: {{ total |customCurrency}}
+                                </h3>
+                            </div>
+                            <hr style="border: 2px solid black;">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <ul class="d-flex justify-content-center">
+                                <li>BLACK Sarl</li>
+                                <li>&copy; 2024</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-center">
+                            <!-- <img src="{{qrcodeImgeUrl}}" class="img-fluid" alt="" height="200"> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ERROR STATE -->
+                <div *ngIf="appState === DataState.ERROR_STATE">
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alerte-info" role="alerte">
+                            <h2 class="">An error occured. Please try again.</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <span class="col-4" [ngClass]="[hello == '' ? 'placeholder':'' ]">{{ hello}}</span> -->

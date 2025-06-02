@@ -1,0 +1,10 @@
+mat-form-field{
+    width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+    mat-form-field{
+        width: 100%;
+    }
+    
+}

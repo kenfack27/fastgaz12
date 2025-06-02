@@ -1,0 +1,50 @@
+
+
+main {
+    /* background: #F4F6FF; */
+    /* height: 100%; */
+}
+
+.codeInput-block {
+    margin-top: 10%;
+
+}
+h1 {
+    font-weight: 900;
+    color: #ff4081;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+h2 {
+    font-weight: 700;
+}
+
+
+.follow a {
+    font-size: 24px;
+    margin: 8px;
+}
+
+.follow a i {
+    color: #ff4081;
+    font-weight: bold;
+}
+.codeInput-block{
+    /* width: 600px; */
+}
+
+.codeInput{
+    width: 500px;
+}
+
+
+@media screen and (max-width: 575px) {
+
+    .codeInput{
+        width: 100%
+    }
+
+    .codeInput-block {
+        margin-top: 50%;
+    }
+}

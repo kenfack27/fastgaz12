@@ -1,0 +1,29 @@
+h5{
+    color: #ec437c;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color: #333;
+}
+
+
+.custom-table {
+    border: 1px solid #e0e3ec;
+}
+.custom-table thead {
+    background: #000;
+}
+.custom-table thead th {
+    border: 0;
+    color: #333;
+}
+.custom-table > tbody tr:hover {
+    background: #fafafa;
+}
+.custom-table > tbody tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
+.custom-table > tbody td {
+    border: 1px solid #e6e9f0;
+}

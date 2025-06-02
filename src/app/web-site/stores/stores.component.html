@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col back-button">
+            <h1> 
+                <button (click)="onGoBack()" mat-icon-button><i class="fa-solid fa-arrow-left-long"></i></button>Stores
+            </h1>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-6">
+            <div class="card mb-3" style="height: 18rem;" (click)="onStore(1,1)">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <img src="/assets/gaz-total.jpeg" class="d-block w-100" alt="Store name">
+                </div>
+            </div>
+            <h4 class="small text-center mb-4"><i class="fa-solid fa-location-dot"></i> &nbsp;Localize</h4>
+        </div>
+        <div class="col-6">
+            <div class="card mb-3" style="height: 18rem;">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <img src="" class="d-block w-100" alt="Store name">
+                </div>
+            </div>
+            <h4 class="small text-center mb-4"><i class="fa-solid fa-location-dot"></i> &nbsp;Buy</h4>
+        </div>
+    </div>
+    <div class="row">
+        <app-footer></app-footer>
+    </div>
+</div>

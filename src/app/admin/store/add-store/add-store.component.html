@@ -1,0 +1,70 @@
+<div class="container">
+    <h2><button (click)="onGoBack()" mat-icon-button><mat-icon>arrow_back</mat-icon></button></h2>
+    <div class="row">
+        <h1 class="text-center">Create New Store</h1>
+        <div class="col-md-6">
+            <div class="card-body">
+                <!-- google-map-demo.component.html -->
+                <google-map height="400px" width="400px" [center]="center" [zoom]="zoom"
+                    (mapClick)="addMarker($event)">
+                    <map-marker *ngFor="let position of markerPositions" [position]="position"
+                        [options]="markerOptions" />
+                </google-map>
+            </div>
+
+        </div>
+    </div>
+    <div class="px-2">
+
+        <div class="row d-flex justify-content-center ">
+           
+            <div class="col-md-12 form-add-store" [formGroup]="storeForm">
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Store Name</mat-label>
+                        <input type="text" matInput formControlName="name" />
+                        <mat-error>Name cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Your Location</mat-label>
+                        <input type="text" matInput formControlName="address" />
+                        <mat-error>Address cannot be empty</mat-error>
+                        <mat-hint>Simbock, 3 Lampadaire</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Your Email</mat-label>
+                        <input type="email" matInput formControlName="userEmail">
+                        <mat-error>Email cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Phone number</mat-label>
+                        <input type="number" matInput formControlName="phoneNumber">
+                        <mat-error>Phone number must have 9 number</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Store Email</mat-label>
+                        <input type="email" matInput formControlName="email">
+                        <mat-error>Email cannot be empty</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-2 d-flex justify-content-between">
+                    <button mat-flat-button [disabled]="!storeForm.valid" color="accent" (click)="onSaveCreate()"
+                        *ngIf="!(isLoading$ | async)">Save</button>
+                    <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Saving...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

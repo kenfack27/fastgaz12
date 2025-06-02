@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="px-2">
+        <div class="row mb-2 mt-2">
+            <div class="col d-flex justify-content-between">
+                <h1>
+                    <button (click)="onGoBack()" mat-icon-button><i
+                            class="fa-solid fa-arrow-left-long"></i></button>Store List
+                </h1>
+                <button  mat-icon-button color="accent" class="add-button"
+                routerLink="/admin/add-store"><mat-icon>add_business</mat-icon> </button>
+            </div>
+        </div>
+        <div class="row mb-2">
+          
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <mat-nav-list *ngFor="let owner of myStoreList" >
+                    <a mat-list-item >
+                        <span *ngIf="!owner.accessRevoked" class="badge rounded-pill bg-success float-end">running</span>
+                        <span *ngIf="owner.accessRevoked" class="badge rounded-pill bg-danger float-end">missing</span>
+                        <span matListItemTitle>{{ owner.store.name }}</span>
+                        <span matLine>{{ owner.users.firstName }}</span>
+                       
+                        
+                    </a>
+                </mat-nav-list>
+
+            </div>
+        </div>
+    </div>
+
+</div>

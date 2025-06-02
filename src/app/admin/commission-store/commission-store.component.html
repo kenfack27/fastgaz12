@@ -1,0 +1,57 @@
+<div class="container my-4">
+    <!-- Back button and header -->
+    <div class="d-flex align-items-center mb-3">
+      <button mat-icon-button (click)="onGoBack()" class="me-2">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="mb-0">Store Commissions</h1>
+    </div>
+  
+    <!-- Loading State -->
+    <div *ngIf="appState === DataState.LOADING_STATE" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <!-- Error State -->
+    <div *ngIf="appState === DataState.ERROR_STATE" class="alert alert-danger text-center">
+      <mat-icon class="me-1">error</mat-icon> Failed to load commissions. Please try again.
+    </div>
+  
+    <!-- Loaded State -->
+    <div *ngIf="appState === DataState.LOADED_STATE">
+      <div *ngIf="commissionStores.length > 0" class="row gy-3">
+        <div *ngFor="let commission of commissionStores" class="col-12">
+          <mat-card class="shadow-sm rounded">
+            <mat-card-header>
+              <mat-card-title class="text-success">
+                {{ commission.amount | customCurrency }}
+              </mat-card-title>
+              <mat-card-subtitle class="float-end">
+                {{ commission.createdAt | date: 'mediumDate' }}
+              </mat-card-subtitle>
+            </mat-card-header>
+  
+            <mat-card-content>
+              <p class="mb-1">
+                <strong>Store:</strong> {{ commission.store?.name || 'N/A' }}
+              </p>
+              <p class="mb-0">
+                <strong>Order #:</strong> {{ commission.customerOrder?.invoiceNumber || 'N/A' }}
+              </p>
+              <p class="mb-0">
+                <strong>Total:</strong> {{ commission.customerOrder?.total | customCurrency }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+  
+      <!-- Empty State -->
+      <div *ngIf="commissionStores.length === 0" class="alert alert-info text-center mt-4">
+        <mat-icon class="me-1">info</mat-icon> No store commissions available.
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,56 @@
+h1,
+h2 {
+    font-weight: 700;
+}
+
+.brand {
+    color: #ec437c;
+}
+
+.amount {
+    font-weight: 700;
+    color: #ec437c;
+}
+
+.number {
+    font-weight: 900;
+    color: #ec437c;
+    text-align: center;
+}
+
+.card {
+    background: #fff;
+    border-radius: 15px;
+
+}
+
+.card-insight {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #333;
+    block-size: 200px;
+}
+
+.card:hover {
+    box-shadow: none;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.card{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {}

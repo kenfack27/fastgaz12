@@ -1,0 +1,167 @@
+h1 {
+    font-weight: 700;
+    color: #ff4081;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-transform: capitalize;
+}
+
+.logo-2 {
+    width: 100% !important;
+    height: 400px;
+    border: 1px #ccc solid;
+    border-radius: 12px !important;
+}
+
+.store-name {
+    font-weight: 600;
+    color: #ff4081;
+    text-transform: uppercase !important;
+}
+
+h2,
+h3 {
+    font-weight: 600;
+}
+
+.page {
+    background: #fefefe;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+}
+
+.chooseUs ol {
+    padding: 10px;
+}
+
+.chooseUs ol li {
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 5px 5px 5px #333
+}
+
+.yellow {
+    color: #ffff00;
+}
+
+.menu a {
+    display: inline-flex;
+    margin: 10px;
+    color: #fff;
+}
+
+.space {
+    flex: 1 1;
+}
+
+.get-start-button {
+    border-radius: 15px;
+    width: 300px;
+}
+
+.custorm-carousel {
+    background: #eee;
+    border-radius: 20px;
+    border: 2px solid #eee;
+}
+
+.custorm-carousel .carousel-control-prev span {
+    color: rgb(177, 33, 81);
+}
+
+.example-card {
+    box-shadow: 5px 5px 5px #333;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    /* width: 100px; */
+    animation-duration: 0s;
+    height: 200px;
+}
+
+
+.example-card:hover {
+    animation-duration: 1s;
+    transition: 0.1s;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.customer-card:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+
+
+.spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Semi-transparent white overlay */
+    z-index: 9999;
+    /* Ensure it's on top of all content */
+}
+
+.mat-spinner {
+    width: 50px;
+    height: 50px;
+}
+
+
+.badge-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+    font-size: 0.7rem;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+@media screen and (min-width: 992px) {
+
+    .customer-card img {
+        background: white;
+        position: relative;
+        height: auto;
+        width: 300px;
+        display: block;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 575px) {
+    .get-start-button {
+        width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* .customer-card{
+        width: 100%;
+    } */
+
+}

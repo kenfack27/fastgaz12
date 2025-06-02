@@ -1,0 +1,122 @@
+/* ul li {
+    list-style: none;
+}
+
+.menu-footer {
+    visibility: hidden;
+} */
+
+
+/* @media screen and (max-width: 575px) {
+    .menu-footer {
+        visibility: visible;
+    }
+
+    .menu-footer {
+        background: #f3f3f3;
+    }
+
+
+    .menu-footer ul li {
+        margin: 8px;
+        box-shadow: 5px 5px 5px 0.1px #333;
+        border-radius: 50%;
+        border: 1px solid #eee;
+    }
+
+    button {
+        margin: 8px;
+        box-shadow: 5px 5px 5px 0.1px #333;
+        border-radius: 50%;
+        border: 1px solid #eee;
+    }
+
+    .menu-footer ul li:hover {
+        box-shadow: none;
+    }
+
+
+} */
+
+/* ----------------------------------- */
+/* footer-nav.component.css */
+
+
+.navbar {
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 8px 0;
+}
+
+.btn-footer {
+    height: auto !important;
+    line-height: normal !important;
+    padding: 8px 12px !important;
+    min-width: 64px !important;
+    border-radius: 8px !important;
+}
+
+.btn-footer:hover {
+    background-color: rgba(103, 58, 183, 0.04) !important;
+}
+
+.btn-footer.active-route {
+    color: #673ab7 !important;
+    background-color: rgba(103, 58, 183, 0.12) !important;
+}
+
+.nav-label {
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: normal;
+}
+
+.icon-container {
+    position: relative;
+}
+
+.badge-container {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.item-badge {
+    display: inline-block;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+/* Make bottom navbar responsive */
+@media (max-width: 599px) {
+    .nav-label {
+        font-size: 11px;
+    }
+
+    .navbar {
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+    }
+
+    .btn-footer {
+        padding: 6px 8px !important;
+        min-width: 56px !important;
+    }
+}
+
+/* Hide navbar when keyboard is open on mobile */
+@media (max-height: 400px) {
+    .navbar.fixed-bottom {
+        transform: translateY(100%);
+    }
+}

@@ -1,0 +1,77 @@
+main {
+    background: #F4F6FF;
+    height: 100vh;
+}
+
+.login-block {
+    margin-top: 10rem;
+    background: #F4F6FF;
+    /* box-shadow: 3px 3px 3px #333; */
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 14px;
+  
+}
+
+.login-block {
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+h1 {
+    font-weight: 900;
+    color: #ff4081;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.btn-danger {
+    background: #ff4081;
+}
+
+mat-form-field {
+    width: 500px;
+}
+
+
+button {
+    border-radius: 15px;
+    width: 500px;
+}
+
+.follow a {
+    font-size: 24px;
+    margin: 8px;
+}
+
+.follow a i {
+    color: #ff4081;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 575px) {
+    mat-form-field {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .login-block {
+        margin-top: 50%;
+    }
+
+    .login-block {
+        margin-top: 10rem;
+        border: none;
+        border-radius: 15px;
+        padding: 14px;
+      
+    }
+    
+    .login-block {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}

@@ -1,0 +1,6 @@
+export enum SaleStatus{
+    PENDING="PENDING",
+    APPROVED="APPROVED",
+    REJECTED="REJECTED",
+    CANCELLED="CANCELLED",
+}

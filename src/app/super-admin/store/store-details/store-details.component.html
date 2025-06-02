@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="px-2">
+        <div class="row mb-2 mt-2">
+            <div class="col d-flex justify-content-between">
+                <h1>
+                    <button (click)="onGoBack()" mat-icon-button><i
+                            class="fa-solid fa-arrow-left-long"></i></button>Manager Store
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- LODING STATE -->
+                <div *ngIf="appState === DataState.LOADING_STATE ">
+                    <div class="d-flex justify-content-center text-primary">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- L0ADED STATE -->
+                <div *ngIf="appState === DataState.LOADED_STATE">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <ul>
+                                        <li>Store name : <span class="text-muted"> {{storeFound.name}}</span></li>
+                                        <li>Created By : <span class="text-muted">{{storeFound.createdBy}}</span></li>
+                                        <li>Created At : <span class="text-muted">{{storeFound.createdAt | date}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div [formGroup]="storeForm">
+                                        <div class="mb-2">
+                                            <mat-slide-toggle 
+                                            [(ngModel)]="storeFound.active"
+                                            formControlName="enableStore">Enable
+                                                store</mat-slide-toggle>
+                                        </div>
+                                        <div class="mb-2">
+                                            <button *ngIf="!(isLoading$ | async)"
+                                                (click)="SaveSetting(storeFound)" mat-raised-button>Save setting</button>
+
+                                            <button *ngIf="(isLoading$ | async)" class="btn btn-primary" type="button"
+                                                disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status"
+                                                    aria-hidden="true"></span>
+                                                Saving...
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ERROR STATE -->
+                <div *ngIf="appState === DataState.ERROR_STATE" class="alert alert-danger d-flex align-items-center"
+                    role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <div>
+                        An error occured. Please try again.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

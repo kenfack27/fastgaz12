@@ -1,0 +1,29 @@
+label {
+    font-weight: 600;
+}
+p{
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 900;
+    color: #ff4081;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+mat-form-field {
+    width: 350px;
+}
+
+@media screen and (max-width: 575px) {
+    mat-form-field {
+        width: 100%;
+    }
+
+    payment-button {
+        width: 100%;
+    }
+
+   
+}

@@ -1,0 +1,55 @@
+services:
+  postgre-fast-gaz-db:
+    container_name: postgre-fast-gaz-db
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ZmFzdGdhego=
+      POSTGRES_PASSWORD: RmFzdGdhejEvQAo=
+      PGDATA: /data/postgres
+    volumes:
+      - networks-fastgaz:/data/postgres
+    ports:
+      - 5334:5432
+    expose:
+      - 5334
+    networks:
+      - networks-fastgaz
+
+  fast-gaz-ui:
+    container_name: fastgaz-frontend
+    build: .
+    image: dongmomartial/fastgaz-frontend:v1
+    restart: unless-stopped
+    ports:
+      - 30003:80
+      - 30004:443
+    expose:
+      - 30003
+      - 30004
+    volumes:
+      - /etc/letsencrypt/live/kapexpert.cloud/fullchain.pem:/etc/letsencrypt/live/kapexpert.cloud/fullchain.pem
+      - /etc/letsencrypt/live/kapexpert.cloud/privkey.pem:/etc/letsencrypt/live/kapexpert.cloud/privkey.pem
+    networks:
+      - networks-fastgaz
+
+  fast-gaz-api:
+    container_name: fast-gaz-api
+    image: dongmomartial/fastgaz-backend:latest
+    ports:
+      - "8087:8087"
+    depends_on:
+      - postgre-fast-gaz-db
+    environment:
+      SPRING_APPLICATION_JSON: '{ "server.ssl.key-store" : "classpath:keystore/letsencrypt.jks", "server.ssl.key-store-type" : "PKCS12", "server.ssl.key-alias" : "letsencrypt", "server.ssl.key-store-password" : "changeit", server.ssl.enabled" : "true", "spring.datasource.url"  : "jdbc:postgresql://postgre-fast-gaz-db:5334/fastgazdbprod", "spring.datasource.username" : "ZmFzdGdhego=", "spring.datasource.password" : "RmFzdGdhejEvQAo=", "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect", "spring.jpa.hibernate.ddl-auto" : "update", "spring.profiles.active" : "prod"
+
+        }'
+    networks:
+      - networks-fastgaz
+    restart: unless-stopped
+
+networks:
+  networks-fastgaz:
+    driver: bridge
+volumes:
+  networks-fastgaz:

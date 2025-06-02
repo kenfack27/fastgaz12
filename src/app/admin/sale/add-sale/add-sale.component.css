@@ -1,0 +1,60 @@
+mat-form-field {
+    width: 500px
+}
+
+.customButton{
+    border-radius: 15px;
+    width: 500px;
+}
+
+h1 {
+    font-weight: 900;
+    color: #ff4081;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.badgeAndClearButton button{
+    display: inline-flex;
+}
+
+.product-image {
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+
+}
+
+
+
+mat-nav-list a {
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 5px #333;
+    border-radius: 15px;
+
+}
+
+mat-nav-list a:hover {
+    box-shadow: none;
+}
+
+
+
+@media screen and (max-width: 575px) {
+    mat-form-field {
+        width: 100%;
+    }
+
+    .customButton {
+        width: 100%;
+    }
+
+   
+    mat-nav-list a {
+
+    }
+
+
+
+}

@@ -1,0 +1,84 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <!-- dashboard -->
+      <a mat-list-item routerLink="/admin" routerLinkActive="active"><mat-icon matListItemIcon
+          class="text-dark">dashboard</mat-icon>Home</a>
+
+      <a mat-list-item routerLink="/admin/users"><mat-icon matListItemIcon
+          class="text-dark">supervisor_account</mat-icon>User</a>
+
+      <!-- Product -->
+      <a mat-list-item (click)="onGoToProduct()"><mat-icon matListItemIcon
+          class="text-dark">inventory</mat-icon>Product</a>
+
+      <!-- Sale -->
+      <a mat-list-item routerLink='/admin/sale'><mat-icon matListItemIcon
+          class="text-dark">shopping_bag</mat-icon>Sale</a>
+
+      <!-- Purchase -->
+      <a mat-list-item routerLink='/admin/purchases'><mat-icon matListItemIcon
+          class="text-dark">shopping_cart</mat-icon>Purchase</a>
+
+      <!-- Customer order item -->
+      <a mat-list-item routerLink="/admin/customer-order"><mat-icon matListItemIcon
+          class="text-dark">list_alt_check</mat-icon> Customer order</a>
+
+      <!-- Delivery -->
+      <!-- <a mat-list-item routerLink="/admin/find-delivery"><mat-icon matListItemIcon
+          class="text-dark">share_location</mat-icon>Delivery</a> -->
+
+      <!-- Delivery -->
+      <a mat-list-item routerLink='/admin/delivery-list'><mat-icon matListItemIcon
+        class="text-dark">shopping_cart</mat-icon>Deliverys</a>
+      <!-- Store -->
+      <!-- <a mat-list-item routerLink="/admin/{{storeID}}/stores"><mat-icon matListItemIcon
+          class="text-dark">store</mat-icon>Store</a> -->
+      <!-- Inventory -->
+      <a mat-list-item routerLink="/admin/inventory"><mat-icon matListItemIcon
+          class="text-dark">update</mat-icon>History</a>
+
+      <!-- daily report -->
+      <a mat-list-item routerLink="/admin/daily-report"><mat-icon matListItemIcon
+          class="text-dark">summarize</mat-icon>Report</a>
+
+      <a mat-list-item routerLink="/admin/store-payments"><mat-icon matListItemIcon
+          class="text-dark">attach_money</mat-icon>Payments</a>
+
+      <a mat-list-item routerLink="/admin/commissions"><span>Commission</span></a>
+
+      <hr>
+      <a mat-list-item (click)="onGoToManagement()"><mat-icon matListItemIcon
+          class="text-dark">settings</mat-icon>Management</a>
+
+      <a mat-list-item routerLink="/service/help"><mat-icon matListItemIcon class="text-dark">help</mat-icon>Help </a>
+      <a mat-list-item routerLink="/service"><mat-icon matListItemIcon class="text-danger">logout</mat-icon>Exit </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="brand text-uppercase">Fast Gaz</span>
+      <div class="spacer"></div>
+      <!-- Notification -->
+      <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+      <!-- user log -->
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="login-btn"> <i class="bi bi-person-fill"></i></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/admin/store-profile" routerLinkActive="active">Store Profil</button>
+        <button mat-menu-item routerLink="/login" routerLinkActive="active">Sing in</button>
+        <button mat-menu-item (click)="onLogout()" routerLinkActive="active">Logout</button>
+      </mat-menu>
+      <!-- user end -->
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

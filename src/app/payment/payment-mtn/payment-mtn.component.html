@@ -1,0 +1,105 @@
+<div class="container mt-5">
+
+     <!-- Header Section -->
+     <div class="row mb-3">
+        <div class="col-12">
+            <div class="d-flex align-items-center page-header">
+                <button (click)="onGoBack()" mat-icon-button aria-label="Go back" class="back-button">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <h1 class="mb-0 ms-2 page-title">Payment</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="px-4">
+        
+        <p>Choose your payment method</p>
+        <div class="row mb-4">
+            <div class="col-md-12 d-flex justify-content-between">
+                <button mat-raised-button color="primary" (click)="onChooseMTN() ">
+                    MTN Mobile 
+                </button>
+                <button mat-raised-button color="primary" (click)="onChooseOM() ">
+                    Orange Mobile
+                </button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div *ngIf="payWithMTN" class="card-body" [formGroup]="paymentMOMOForm">
+
+                        <div class="mb-2 d-flex justify-content-center">
+                            <img src="/assets/mtn_logo.jpg" alt="" class="img-fluid" height="auto" width="150">
+                        </div>
+
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Buy Price</mat-label>
+                                <input type="number" matInput formControlName="amount" [value]="amount" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Phone Number</mat-label>
+                                <input type="text" matInput formControlName="payerNumber" [value]="payerNumber" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="">
+                            <button   color="accent" mat-raised-button (click)="makePaymentWithMOMO()" *ngIf="!(isLoading$ | async)">
+                                Make Payment
+                            </button>
+                            <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Payement...
+                            </button>
+                            <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <!-- <button mat-raised-button color="accent" (click)="onGoBack()">Back</button> -->
+                        </div>
+
+                    </div>
+
+
+                    <!-- OM Payment -->
+
+                    <div *ngIf="payWithOM" class="card-body" [formGroup]="paymentOMForm">
+
+                        <div class="mb-2 d-flex justify-content-center">
+                            <img src="/assets/omlogo.png" alt="" class="img-fluid" height="auto" width="150">
+                        </div>
+
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Buy Price</mat-label>
+                                <input type="number" matInput formControlName="amount" [value]="amount" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Phone Number</mat-label>
+                                <input type="text" matInput formControlName="payerNumber" [value]="payerNumber" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="">
+                            <button class="payment-button"   color="accent" mat-raised-button (click)="onMakePaymentOM()" *ngIf="!(isLoading$ | async)">
+                                Make Payment
+                            </button>
+                            <button *ngIf="(isLoading$ | async)" class="btn btn-danger" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Payement...
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

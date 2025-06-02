@@ -1,0 +1,39 @@
+.price {
+    font-weight: bold;
+    color: #009879;
+}
+
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.product {
+    border-radius: 20px;
+}
+
+.checkout{
+    border-radius: 15px;
+}
+
+.invoice li {
+    margin: 0 40px 0 0;
+    border-bottom: dashed;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #333;
+}
+
+@media screen and (max-width: 575px) {
+    .checkout{
+        width: 100%;
+    }
+}

@@ -1,0 +1,160 @@
+<div class="container order-details-container">
+    <div class="content-wrapper px-3 py-3">
+        <!-- Header Section -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="d-flex align-items-center page-header">
+                    <button (click)="onGoBack()" mat-icon-button aria-label="Go back" class="back-button">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                    <h2 class="mb-0 ms-2 page-title">Order Details</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert Message Section -->
+        <div class="row mb-3" *ngIf="message !== ''">
+            <div class="col-12">
+                <div class="alert alert-danger d-flex align-items-center custom-alert" role="alert">
+                    <mat-icon class="me-2 alert-icon">warning</mat-icon>
+                    <div>{{ message }}</div>
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Button Section -->
+        <div class="row mb-3" *ngIf="appState === DataState.LOADED_STATE">
+            <div class="col-md-6 col-12">
+                <button mat-raised-button color="primary" class="invoice-button w-100" (click)="onSeeInvoice()">
+                    <mat-icon class="me-2">receipt</mat-icon>See Invoice
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="row mb-3" *ngIf="appState === DataState.LOADING_STATE">
+            <div class="col-12 d-flex justify-content-center loader-container">
+                <mat-spinner diameter="40" color="accent"></mat-spinner>
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="row mb-3" *ngIf="appState === DataState.LOADED_STATE && message">
+            <div class="col-12">
+                <div class="alert alert-success d-flex align-items-center custom-alert success-alert" role="alert">
+                    <mat-icon class="me-2 alert-icon">check_circle</mat-icon>
+                    <div>{{ message }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Header Section -->
+        <div class="row mb-3">
+            <div class="col-md-6 col-12 mb-2 mb-md-0">
+                <h4 class="mb-0 items-count"><span>You have <strong>{{items}}</strong> item(s)</span></h4>
+            </div>
+            <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                <button mat-raised-button color="warn" (click)="onRemove()" class="empty-cart-btn">
+                    <mat-icon class="me-1">delete</mat-icon>Empty Cart
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Items Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="cart-items-container">
+                    <mat-card class="mb-3 cart-item" *ngFor="let cartItem of customerOrderItemList">
+                        <mat-card-content>
+                            <div class="d-flex align-items-center">
+                                <div class="product-image-container">
+                                    <img src="assets/{{cartItem.product.image}}" class="product-image"
+                                        alt="{{cartItem.product.name}}">
+                                </div>
+                                <div class="flex-grow-1 ms-3 product-details">
+                                    <h5 class="mb-1 product-name">{{ cartItem.product.name }}</h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price fw-bold">{{ cartItem.price | customCurrency }}</span>
+                                        <span class="badge rounded-pill quantity-badge">{{cartItem.quantity}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <div *ngIf="customerOrderItemList.length === 0"
+                        class="alert alert-primary d-flex align-items-center custom-alert empty-cart-alert"
+                        role="alert">
+                        <mat-icon class="me-2 alert-icon">shopping_cart</mat-icon>
+                        <div>Your cart is empty!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <mat-card class="order-summary-card">
+                    <mat-card-header>
+                        <mat-card-title>Packaging Price</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="d-flex justify-content-between mb-2 summary-item">
+                            <span>Packaging:</span>
+                            <span class="fw-bold summary-value">{{packagingPrice}}</span>
+                        </div>
+                        <!-- Add other summary items here as needed -->
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Delivery Options Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <mat-card class="options-card">
+                    <mat-card-header>
+                        <mat-card-title>Delivery Options</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="mb-3 option-group">
+                            <h6 class="option-title">Delivery Method:</h6>
+                            <mat-radio-group aria-label="Select delivery option" (change)="onChooseDelivery($event)"
+                                class="d-flex flex-column flex-md-row gap-3">
+                                <mat-radio-button value="1" class="custom-radio">With delivery</mat-radio-button>
+                                <mat-radio-button value="2" class="custom-radio">Without delivery</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="mb-2 option-group">
+                            <h6 class="option-title">Packaging Option:</h6>
+                            <mat-radio-group aria-label="Select packaging option" (change)="onChoosePackaging($event)"
+                                class="d-flex flex-column flex-md-row gap-3">
+                                <mat-radio-button value="1" class="custom-radio">With packaging</mat-radio-button>
+                                <mat-radio-button value="2" class="custom-radio">Without packaging</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- Checkout Button Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <button (click)="onCheckOut()" mat-flat-button color="accent" class="w-100 py-2 checkout-button">
+                    <mat-icon class="me-2">shopping_cart_checkout</mat-icon>Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <app-footer class="mt-4"></app-footer>
+        </div>
+    </div>
+
+</div>

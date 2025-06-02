@@ -1,0 +1,9 @@
+<div class="spinner-container">
+    <div *ngIf="(customLoadingIndicator)">
+        <ng-container *ngTemplateOutlet="customLoadingIndicator" />
+        <mat-progress-spinner class="" color="accent"></mat-progress-spinner>
+    </div>
+</div>
+<div *ngIf="!(customLoadingIndicator)" class="spinner-container">
+    <mat-spinner color="accent" />
+</div>
