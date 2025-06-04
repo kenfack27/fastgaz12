@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
 
-
+import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -41,7 +41,6 @@ import { WithdrawalComponent } from './payment/withdrawal/withdrawal.component';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { IonicModule } from '@ionic/angular';
 
 
 
@@ -90,6 +89,7 @@ export function tokenGetter() {
     SuperAdminModule,
     AdminModule,
     WebSiteModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     JwtModule.forRoot({
         config: {

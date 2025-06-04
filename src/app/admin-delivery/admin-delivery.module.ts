@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdminDeliveryRoutingModule } from './admin-delivery-routing.module';
 import { AdminDeliveryComponent } from './admin-delivery.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,6 +26,7 @@ import { SchareModule } from '../schare/schare.module';
 import { OrderDetailsComponent } from './receive-order/order-details/order-details.component';
 import { CommissionDeliveryComponent } from './commission-delivery/commission-delivery.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { IonicModule } from '@ionic/angular';
 
 
 
@@ -60,7 +60,9 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     MatIconModule,
     MatListModule,
     SchareModule,
-    MatSelectModule
+    MatSelectModule,
+    IonicModule.forRoot(),
+
   ]
 })
 export class AdminDeliveryModule { 

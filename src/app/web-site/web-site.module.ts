@@ -38,6 +38,7 @@ import { CustomerInvoiceComponent } from './customer-order-invoice/customer-invo
 import { MyOrdersComponent } from './my-order/my-orders/my-orders.component';
 import { OrderDetailsComponent } from './my-order/order-details/order-details.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { IonicModule } from '@ionic/angular';
 
 
 
@@ -86,6 +87,7 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    IonicModule.forRoot(),
   ]
 })
 export class WebSiteModule { }

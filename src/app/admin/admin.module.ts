@@ -52,6 +52,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import {MatTableModule} from '@angular/material/table';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+     IonicModule.forRoot(),
   ],
   providers: [DatePipe],
 })

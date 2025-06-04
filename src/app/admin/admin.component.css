@@ -81,3 +81,37 @@ a{
   top: 4px;
   margin-right: 14px;
 }
+/* Assure la hauteur 100% et scroll fluide iOS */
+ion-content,
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch; /* scroll fluide sur iOS */
+  overflow-y: auto;
+}
+
+/* Gestion des safe areas iOS */
+ion-content {
+  --padding-top: env(safe-area-inset-top);
+  --padding-bottom: env(safe-area-inset-bottom);
+  --padding-start: env(safe-area-inset-left);
+  --padding-end: env(safe-area-inset-right);
+}
+
+/* Optionnel: espace entre toolbar et contenu dans sidenav */
+mat-toolbar {
+  flex-shrink: 0;
+}
+
+/* Pour que la sidebar prenne toute la hauteur */
+.sidenav {
+  height: 100%;
+}
+
+/* Spacer flex dans la toolbar */
+.spacer {
+  flex: 1 1 auto;
+}
