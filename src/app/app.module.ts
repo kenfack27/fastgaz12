@@ -41,6 +41,7 @@ import { WithdrawalComponent } from './payment/withdrawal/withdrawal.component';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { StatusBarHandlerComponent } from './shared/status-bar-handler/status-bar-handler.component';
 
 
 
@@ -63,6 +64,7 @@ export function tokenGetter() {
     WithdrawalComponent,
     AboutComponent,
     ContactUsComponent,
+    StatusBarHandlerComponent
   ],
   imports: [
     MatPaginatorModule,
