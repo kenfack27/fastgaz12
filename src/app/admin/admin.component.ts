@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from '../service/storeService.service';
 import { UsersService } from '../service/users.service';
 import { NotificationService } from '../service/notification.service';
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 @Component({
   selector: 'app-admin',
@@ -25,7 +27,12 @@ export class AdminComponent implements OnInit {
   private userService = inject(UsersService);
   private notifier = inject(NotificationService);
   storeID: string = '';
-
+constructor() {
+  if (Capacitor.getPlatform() === 'ios') {
+    StatusBar.setOverlaysWebView({ overlay: false });
+    StatusBar.setStyle({ style: Style.Dark }); // selon ton thème
+  }
+}
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

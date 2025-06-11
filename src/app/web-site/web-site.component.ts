@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
 import { UsersService } from '../service/users.service';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-web-site',
@@ -22,8 +24,12 @@ export class WebSiteComponent implements OnInit {
   private router = inject(Router);
   private userService = inject(UsersService);
   private notifier = inject(NotificationService);
-
-  
+constructor() {
+  if (Capacitor.getPlatform() === 'ios') {
+    StatusBar.setOverlaysWebView({ overlay: false });
+    StatusBar.setStyle({ style: Style.Dark }); // selon ton thème
+  }
+}
   ngOnInit(): void {
     var userId = parseInt(this.route.snapshot.paramMap.get("id"));
   }

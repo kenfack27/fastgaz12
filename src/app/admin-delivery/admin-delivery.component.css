@@ -74,3 +74,12 @@ mat-toolbar {
 .spacer {
   flex: 1 1 auto;
 }
+/* Évite que la status bar cache le haut du contenu */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Optionnel : protéger aussi le bas si nécessaire (ex: iPhone X+) */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

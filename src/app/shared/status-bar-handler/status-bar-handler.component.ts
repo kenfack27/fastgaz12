@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
 
@@ -12,7 +13,12 @@ export class StatusBarHandlerComponent  implements OnInit {
  constructor(
     private renderer: Renderer2,
     private platform: Platform
-  ) {}
+  ) {
+     if (Capacitor.getPlatform() === 'ios') {
+    StatusBar.setOverlaysWebView({ overlay: false });
+    StatusBar.setStyle({ style: Style.Dark }); // selon ton thème
+  }
+  }
 
   async ngOnInit(): Promise<void> {
     await this.platform.ready();
