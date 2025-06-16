@@ -45,10 +45,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    // this.onWachtPosition();
-    // this.getUserIp();
-  }
+  
 
   
   findASeller() {
@@ -99,6 +96,11 @@ export class AppComponent implements OnInit {
       }
     )
   }
+
+async ngOnInit() {
+  await StatusBar.setOverlaysWebView({ overlay: false });
+  await StatusBar.setStyle({ style: Style.Dark }); // ou .Light selon ton thème
+}
 
 
 }
