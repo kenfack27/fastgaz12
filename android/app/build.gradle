@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "cm.kapexpert.fastgaz"
-        minSdk 21
+        minSdk 23
         targetSdk 34
         versionCode 6
         versionName "1.1.4"
