@@ -14,6 +14,21 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+
+        // ✅ inclure toutes les architectures CPU
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+    }
+
+    // ✅ activer le split par ABI (utile si tu veux générer un .apk par architecture)
+    splits {
+        abi {
+            enable true
+            reset()
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            universalApk true // génère aussi un APK universel qui contient tout
+        }
     }
 
     buildTypes {
